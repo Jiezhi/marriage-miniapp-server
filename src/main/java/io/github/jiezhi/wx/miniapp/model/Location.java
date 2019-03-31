@@ -18,8 +18,8 @@ import javax.persistence.Id;
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private Integer uid;
-    private Float lat;
-    private Float lon;
+    private int id;
+    private int uid;
+    private double lat;
+    private double lon;
 }

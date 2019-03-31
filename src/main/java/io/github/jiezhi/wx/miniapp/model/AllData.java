@@ -20,4 +20,5 @@ public class AllData implements Serializable {
     private String music_url;
     private List<Comment> chatList;
     private int chatNum;
+    private Location location;
 }
