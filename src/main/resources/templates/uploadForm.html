@@ -1,11 +1,11 @@
 <html xml:th="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
 <div th:if="${message}">
-    <h2 th:text="${message}}"/>
+    <h2 th:text="${message}"/>
 </div>
 
 <div>
-    <form method="POST" enctype="multipart/form-data" action="/">
+    <form method="POST" enctype="multipart/form-data" action="/upload">
         <table>
             <tr>
                 <td>File to upload:</td>
