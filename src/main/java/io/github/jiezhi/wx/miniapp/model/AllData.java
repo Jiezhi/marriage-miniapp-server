@@ -1,5 +1,6 @@
 package io.github.jiezhi.wx.miniapp.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.List;
  * Function:
  */
 @Data
+@Builder
 public class AllData implements Serializable {
     private MainInfo mainInfo;
     private Bless zanLog;

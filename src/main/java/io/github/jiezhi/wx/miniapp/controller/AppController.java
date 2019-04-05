@@ -60,7 +60,7 @@ public class AppController {
     @GetMapping("/info")
     public @ResponseBody
     MainInfo getInfo(@RequestParam int uid) {
-        return infoRepository.findMainInfoByUserid(uid);
+        return infoRepository.findMainInfoByUid(uid);
     }
 
     @GetMapping("/album")
@@ -72,13 +72,13 @@ public class AppController {
     @GetMapping("/map")
     public @ResponseBody
     AllData getLocation(@RequestParam int uid) {
-        MainInfo mainInfo = infoRepository.findMainInfoByUserid(uid);
+        MainInfo mainInfo = infoRepository.findMainInfoByUid(uid);
 
         Location location = locationRepository.getLocationByUid(uid);
-        AllData allData = new AllData();
-        allData.setMainInfo(mainInfo);
-        allData.setLocation(location);
-        return allData;
+        return AllData.builder()
+            .mainInfo(mainInfo)
+            .location(location)
+            .build();
     }
 
     @GetMapping("/bless")
@@ -90,17 +90,26 @@ public class AppController {
     @PostMapping("/bless")
     public @ResponseBody
     Result postBless(@RequestBody Bless bless) {
-        System.out.println(bless.toString());
         logger.debug(bless.toString());
+
+        if (blessRepository.existsByAvatarUrl(bless.getAvatarUrl())) {
+            logger.debug("already blessed");
+            return Result.builder()
+                .msg("您已经送过祝福啦")
+                .success(false)
+                .build();
+        }
         bless.setTime(TimeUtils.dateFormat.format(new Date()));
         blessRepository.save(bless);
-        Result result = new Result();
-        result.setSuccess(true);
-        result.setMsg("感谢您的祝福^V^");
 
         List<Bless> blesses = blessRepository.getAllByUid(bless.getUid());
-        result.setObj(blesses);
-        return result;
+
+        return Result
+            .builder()
+            .success(true)
+            .msg("感谢您的祝福")
+            .obj(blesses)
+            .build();
     }
 
     @GetMapping("/comment")
@@ -116,11 +125,11 @@ public class AppController {
         logger.debug(comment.toString());
         comment.setTime(TimeUtils.dateFormat.format(new Date()));
         commentRepository.save(comment);
-        Result result = new Result();
-        result.setSuccess(true);
-        result.setMsg("Ok");
-        result.setObj(commentRepository.getAllByUid(comment.getUid()));
-        return result;
+        return Result.builder()
+            .success(true)
+            .msg("感谢您的祝福")
+            .obj(commentRepository.getAllByUid(comment.getUid()))
+            .build();
     }
 
     @PostMapping("/submit")
@@ -128,10 +137,10 @@ public class AppController {
     Result submit(@RequestBody Attendance attendance) {
         logger.debug(attendance.toString());
         attendanceRepository.save(attendance);
-        Result result = new Result();
-        result.setSuccess(true);
-        result.setMsg("OK");
-        return result;
+        return Result.builder()
+            .success(true)
+            .msg("期待您的到来")
+            .build();
     }
 
 }

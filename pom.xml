@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>io.github.jiezhi</groupId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-${profiles.active}</version>
     <artifactId>weixin-java-miniapp-love</artifactId>
     <packaging>jar</packaging>
 
@@ -80,7 +80,43 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profiles.active>prod</profiles.active>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>local</id>
+            <properties>
+                <profiles.active>local</profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>*.template</exclude>
+<!--                    <exclude>*.yml</exclude>-->
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>application-${profiles.active}.yml</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
