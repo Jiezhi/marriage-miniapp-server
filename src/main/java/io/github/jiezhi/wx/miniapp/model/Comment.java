@@ -1,5 +1,6 @@
 package io.github.jiezhi.wx.miniapp.model;
 
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,6 +19,7 @@ import java.util.Date;
  */
 @Data
 @Entity
+@Builder
 public class Comment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

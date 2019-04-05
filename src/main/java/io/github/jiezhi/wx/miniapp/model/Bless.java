@@ -1,6 +1,7 @@
 package io.github.jiezhi.wx.miniapp.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +20,7 @@ import java.util.Date;
  * Function:
  */
 @Data
+@Builder
 @Entity
 public class Bless implements Serializable {
     @Id

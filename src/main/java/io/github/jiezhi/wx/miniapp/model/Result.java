@@ -1,5 +1,6 @@
 package io.github.jiezhi.wx.miniapp.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Data;
  * Function:
  */
 @Data
+@Builder
 public class Result {
     private boolean success;
     private String msg;

@@ -1,6 +1,8 @@
 package io.github.jiezhi.wx.miniapp.model;
 
+import lombok.Builder;
 import lombok.Data;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,11 +18,14 @@ import java.util.Date;
  * Function:
  */
 @Data
+@Builder
 @Entity
 public class MainInfo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer userid;
+    private int id;
+//    @UniqueElements
+    private int uid;
     private String appid;
     private String app_name;
     private String he;
@@ -32,8 +37,8 @@ public class MainInfo implements Serializable {
     private String music;
     private String address;
     private String hotel;
-    private String lat;
-    private String lng;
+    private double lat;
+    private double lng;
     private String share;
     private String cover;
     private String qrimg;

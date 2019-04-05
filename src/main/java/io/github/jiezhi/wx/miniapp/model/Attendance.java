@@ -1,5 +1,6 @@
 package io.github.jiezhi.wx.miniapp.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
  */
 @Data
 @Entity
+@Builder
 public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

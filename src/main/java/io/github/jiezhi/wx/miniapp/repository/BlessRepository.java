@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface BlessRepository extends CrudRepository<Bless, Integer> {
     List<Bless> getAllByUid(int uid);
+    boolean existsByAvatarUrl(String url);
 }

@@ -10,5 +10,5 @@ import org.springframework.data.repository.CrudRepository;
  * Function:
  */
 public interface MainInfoRepository extends CrudRepository<MainInfo, Integer> {
-    MainInfo findMainInfoByUserid(int userid);
+    MainInfo findMainInfoByUid(int uid);
 }
