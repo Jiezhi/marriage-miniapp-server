@@ -132,7 +132,7 @@ public class AppController {
             .build();
     }
 
-    @PostMapping("/submit")
+    @PostMapping("/comment/submit")
     public @ResponseBody
     Result submit(@RequestBody Attendance attendance) {
         logger.debug(attendance.toString());
